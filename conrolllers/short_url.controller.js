@@ -1,4 +1,4 @@
-import { Create_short_url } from "../services/short_url.service.js";
+import {  Create_withoutUser_short_url } from "../services/short_url.service.js";
 
 export const short_url_controller = async (req,res)=>{
       const {url} = req.body;
@@ -9,8 +9,9 @@ export const short_url_controller = async (req,res)=>{
                 message:"Please provide a URL"
             });
         }
-        const newShorturl = Create_short_url(url)
-
+    
+        const newShorturl = await Create_withoutUser_short_url(url)
+console.log("new url"+ newShorturl)
         return res.status(200).json({
             success:true,
             message:"Short URL created successfully",

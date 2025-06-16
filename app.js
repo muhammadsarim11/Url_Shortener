@@ -1,7 +1,7 @@
 import express from 'express';
 import { nanoid } from 'nanoid';
 import dotenv from 'dotenv';
-dotenv.config();
+dotenv.config({ path: '../.env' });
 import ConnectDB from './config/dbconnect.js';
 import ShortUrl from './model/short_url.model.js';
 import shortUrlRouter from './routes/short_url.route.js';
