@@ -5,6 +5,7 @@ dotenv.config({ path: '../.env' });
 import ConnectDB from './config/dbconnect.js';
 import ShortUrl from './model/short_url.model.js';
 import shortUrlRouter from './routes/short_url.route.js';
+import { redirectToUrl } from './conrolllers/redirect.controller.js';
 
 
 const app = express();
@@ -19,7 +20,10 @@ app.get('/',(req,res)=>{
 
 })
 
+
+
 app.use('/api/create',shortUrlRouter)
+app.get("/:id",redirectToUrl); 
 
 app.listen(3000,()=>{
     ConnectDB()
