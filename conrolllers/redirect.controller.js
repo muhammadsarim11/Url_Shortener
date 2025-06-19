@@ -1,4 +1,5 @@
 import ShortUrl from "../model/short_url.model.js";
+import ApiError from "../utils/Errorhandler.js";
 
 export const redirectToUrl  = async (req,res)=>{
      const { id } = req.params;
@@ -16,6 +17,6 @@ export const redirectToUrl  = async (req,res)=>{
         res.redirect(shortUrl.full_url);
     } catch (error) {
         console.error(error);
-        res.status(500).send("Server error");
+    throw new ApiError("there is a problem in redirect")
     }
 }

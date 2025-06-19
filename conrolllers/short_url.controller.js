@@ -1,13 +1,11 @@
 import {  Create_withoutUser_short_url } from "../services/short_url.service.js";
+import ApiError from "../utils/Errorhandler.js";
 
 export const short_url_controller = async (req,res)=>{
       const {url} = req.body;
 
         if(!url){
-            return res.status(400).json({
-                success:false,
-                message:"Please provide a URL"
-            });
+throw new ApiError("Please provide a URL", 400);
         }
     
         const newShorturl = await Create_withoutUser_short_url(url)
