@@ -1,12 +1,14 @@
 import express from 'express';
 import { nanoid } from 'nanoid';
 import dotenv from 'dotenv';
-dotenv.config({ path: '../.env' });
+dotenv.config({ path: './.env' });
 import ConnectDB from './config/dbconnect.js';
 import ShortUrl from './model/short_url.model.js';
 import shortUrlRouter from './routes/short_url.route.js';
 import { redirectToUrl } from './conrolllers/redirect.controller.js';
 import cors from 'cors'
+import { registerUser } from './conrolllers/User.controller.js';
+import authRoutes from './routes/User.route.js';
 
 
 
@@ -22,7 +24,7 @@ app.get('/',(req,res)=>{
 
 })
 
-app.use("/api/auth",)
+app.use("/api/auth", authRoutes)
 
 app.use('/api/create',shortUrlRouter)
 app.get("/:id",redirectToUrl); 
