@@ -6,10 +6,12 @@ import ConnectDB from './config/dbconnect.js';
 import ShortUrl from './model/short_url.model.js';
 import shortUrlRouter from './routes/short_url.route.js';
 import { redirectToUrl } from './conrolllers/redirect.controller.js';
+import cors from 'cors'
+
 
 
 const app = express();
-
+app.use(cors())
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -20,7 +22,7 @@ app.get('/',(req,res)=>{
 
 })
 
-
+app.use("/api/auth",)
 
 app.use('/api/create',shortUrlRouter)
 app.get("/:id",redirectToUrl); 

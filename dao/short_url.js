@@ -7,7 +7,7 @@ export const SaveshortUrl = async (short_url, url, userid) => {
         console.log("APP_URL:", process.env.APP_URL);
         const newUrl = new ShortUrl({
             full_url: url,
-            short_url: short_url, // Only the code, not the full URL
+            short_url:short_url, // Only the code, not the full URL
         });
 
 
