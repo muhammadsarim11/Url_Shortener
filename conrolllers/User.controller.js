@@ -1,3 +1,4 @@
+import { cookiesConfig } from "../config/cookies.js";
 import { jwtConfig } from "../config/jwt.js";
 import { User } from "../model/User.model.js"
 import  ApiError  from "../utils/Errorhandler.js";
@@ -20,8 +21,8 @@ const newUser = new User({
 
     const token =  jwtConfig({id:newUser._id})
 
-
-res.cookie('access_token', token).status(201).json({
+req.user = newUser; // Attach user info to request object
+res.cookie('access_token', token ,cookiesConfig).status(201).json({
     success: true,
     message: "User registered successfully",
     data: newUser,
@@ -43,8 +44,10 @@ const user = await User.findOne({email})
         throw new ApiError("Invalid credentials", 401);
     }
 
+     req.user = user; // Attach user info to request object
     const token = jwtConfig({id:user._id})
-    res.status(200).json({
+    
+    res.cookie('access_token', token ,cookiesConfig).status(200).json({
         success: true,
         message: "User logged in successfully",
         data: user
