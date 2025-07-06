@@ -43,6 +43,7 @@ const user = await User.findOne({email})
         throw new ApiError("Invalid credentials", 401);
     }
 
+    const token = jwtConfig({id:user._id})
     res.status(200).json({
         success: true,
         message: "User logged in successfully",
