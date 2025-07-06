@@ -20,7 +20,8 @@ const newUser = new User({
 
     const token =  jwtConfig({id:newUser._id})
 
-res.status(201).json({
+
+res.cookie('access_token', token).status(201).json({
     success: true,
     message: "User registered successfully",
     data: newUser,
